@@ -10,36 +10,36 @@ export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end end"]
   });
-  // Hero text fades out earlier
+  // Hero text fades out early during the scroll
   const heroTextOpacity = useTransform(heroScroll, [0, 0.4], [1, 0]);
   const heroTextY = useTransform(heroScroll, [0, 0.4], [0, -50]);
-  // Hero background dims towards the end to transition nicely
+  // Hero background dims at the end
   const heroBgOpacity = useTransform(heroScroll, [0.8, 1], [1, 0]);
-  const heroAnimProgress = useTransform(heroScroll, [0, 0.8], [0, 1]);
+  const heroAnimProgress = useTransform(heroScroll, [0, 1], [0, 1]);
 
   // Dumbbell Section (0 - 150vh)
   const dumbbellRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: dumbbellScroll } = useScroll({
     target: dumbbellRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end end"]
   });
-  const dumbellProgress = useTransform(dumbbellScroll, [0, 0.8], [0, 1]);
+  const dumbellProgress = useTransform(dumbbellScroll, [0, 1], [0, 1]);
 
-  // Female Section (0 - 150vh)
+  // Female Section (0 - 200vh)
   const femaleRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: femaleScroll } = useScroll({
     target: femaleRef,
-    offset: ["start start", "end start"]
+    offset: ["start start", "end end"]
   });
-  const femaleProgress = useTransform(femaleScroll, [0, 0.8], [0, 1]);
+  const femaleProgress = useTransform(femaleScroll, [0, 1], [0, 1]);
 
   return (
     <div className="bg-[#050505]">
       
       {/* 1. HERO ATHLETES (Scrollytelling) */}
-      <div ref={heroRef} className="relative h-[150vh]">
+      <div ref={heroRef} className="relative h-[250vh]">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           {/* Background Canvas */}
           <motion.div className="absolute inset-0" style={{ opacity: heroBgOpacity }}>
@@ -137,7 +137,7 @@ export default function Home() {
       </div>
 
       {/* 4. DUMBBELL SHOWCASE (Scrollytelling) */}
-      <div ref={dumbbellRef} className="relative h-[150vh] bg-[#050505]">
+      <div ref={dumbbellRef} className="relative h-[250vh] bg-[#050505]">
         <div className="sticky top-0 h-screen w-full flex flex-col lg:flex-row overflow-hidden">
           {/* Background Canvas (Full screen on mobile to center the dumbbell) */}
           <div className="absolute inset-0 lg:relative w-full lg:w-1/2 h-full flex-shrink-0">
@@ -146,7 +146,7 @@ export default function Home() {
               frameCount={30}
               scrollProgress={dumbellProgress}
               className="lg:scale-125 origin-center"
-              objectFit="contain"
+              objectFit="cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/90 via-transparent to-[#050505]" />
           </div>
@@ -196,7 +196,7 @@ export default function Home() {
       </div>
 
       {/* 5. FEMALE MOVEMENT SECTION (Scrollytelling) */}
-      <div ref={femaleRef} className="relative h-[150vh] bg-[#050505]">
+      <div ref={femaleRef} className="relative h-[250vh] bg-[#050505]">
         <div className="sticky top-0 h-screen w-full flex flex-col lg:flex-row-reverse overflow-hidden">
           {/* Right/Background Canvas (Full screen on mobile) */}
           <div className="absolute inset-0 lg:relative w-full lg:w-1/2 h-full flex-shrink-0">
