@@ -107,7 +107,7 @@ export default function Home() {
       </div>
 
       {/* 3. WHY FRIEND'Z DEN (Normal Scroll) */}
-      <div className="relative z-30 bg-[#050505] pb-24 md:pb-32">
+      <div className="relative z-30 bg-[#050505] pb-10 md:pb-32">
         <div className="w-full max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-6 leading-none">
@@ -151,8 +151,8 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/90 via-transparent to-[#050505]" />
           </div>
           
-          {/* Content overlay on mobile */}
-          <div className="w-full lg:w-1/2 h-full flex flex-col justify-end lg:justify-center px-6 lg:pr-24 lg:pl-12 relative z-10 pb-24 pt-20 overflow-y-auto">
+          {/* Content side-by-side on desktop */}
+          <div className="hidden lg:flex w-1/2 h-full flex-col justify-center pr-24 pl-12 relative z-10 overflow-y-auto">
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-6">
               Equipment That<br /><span className="text-gradient">Pushes Progress</span>
             </h2>
@@ -174,6 +174,27 @@ export default function Home() {
         </div>
       </div>
 
+      {/* MOBILE ONLY: Dumbbell Text - scrolls naturally after dumbbell animation finishes */}
+      <div className="lg:hidden relative z-30 bg-[#050505] px-6 py-16">
+        <h2 className="text-4xl font-black uppercase tracking-tight mb-6">
+          Equipment That<br /><span className="text-gradient">Pushes Progress</span>
+        </h2>
+        <p className="text-lg text-white/60 mb-8">
+          From warm-up sets to serious strength training, FRIEND&apos;Z DEN gives you the tools to train with control, confidence, and intensity.
+        </p>
+        <div className="flex flex-col gap-6">
+          {[
+            { t: 'Free Weights Zone', d: 'Dumbbells, plates, and strength equipment for progressive overload.' },
+            { t: 'Cable Training', d: 'Train back, shoulders, arms, core, and functional movements with better control.' }
+          ].map((card, i) => (
+            <div key={i} className="border-l-2 border-[#FF6A00] pl-6 py-2">
+              <h3 className="text-xl font-bold text-white mb-2">{card.t}</h3>
+              <p className="text-white/60">{card.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* 5. FEMALE MOVEMENT SECTION (Scrollytelling) */}
       <div ref={femaleRef} className="relative h-[150vh] bg-[#050505]">
         <div className="sticky top-0 h-screen w-full flex flex-col lg:flex-row-reverse overflow-hidden">
@@ -189,8 +210,8 @@ export default function Home() {
             <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-l from-black/90 via-black/40 to-transparent lg:to-[#050505]" />
           </div>
           
-          {/* Left/Bottom Content */}
-          <div className="w-full lg:w-1/2 h-full flex flex-col justify-end lg:justify-center px-6 lg:pl-24 lg:pr-12 relative z-10 pb-24 pt-20 overflow-y-auto">
+          {/* Content side-by-side on desktop */}
+          <div className="hidden lg:flex w-1/2 h-full flex-col justify-center pl-24 pr-12 relative z-10 overflow-y-auto">
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-6">
               Form First.<br /><span className="text-gradient">Results Follow.</span>
             </h2>
@@ -209,6 +230,27 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* MOBILE ONLY: Female Text - scrolls naturally after female animation finishes */}
+      <div className="lg:hidden relative z-30 bg-[#050505] px-6 py-16">
+        <h2 className="text-4xl font-black uppercase tracking-tight mb-6">
+          Form First.<br /><span className="text-gradient">Results Follow.</span>
+        </h2>
+        <p className="text-lg text-white/60 mb-8">
+          Correct movement builds strength safely. Trainer-guided workouts help activate the right muscles, improve posture, and make every rep count.
+        </p>
+        <div className="flex flex-col gap-6">
+          {[
+            { t: 'Coach-Guided Form', d: 'Learn how to move correctly and avoid common workout mistakes.' },
+            { t: 'Women-Friendly Training', d: 'A supportive environment for women to train strength, fat loss, and confidence.' }
+          ].map((card, i) => (
+            <div key={i} className="border-l-2 border-[#FF2D2D] pl-6 py-2">
+              <h3 className="text-xl font-bold text-white mb-2">{card.t}</h3>
+              <p className="text-white/60">{card.d}</p>
+            </div>
+          ))}
         </div>
       </div>
 
