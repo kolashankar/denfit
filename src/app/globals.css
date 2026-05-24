@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-gym-dark: #050505;
+  --color-gym-dark-secondary: #0A0A0C;
+  --color-gym-panel: rgba(255,255,255,0.04);
+  --color-gym-border: rgba(255,255,255,0.10);
+  
+  --color-gym-text-primary: rgba(255,255,255,0.92);
+  --color-gym-text-body: rgba(255,255,255,0.62);
+  --color-gym-text-muted: rgba(255,255,255,0.42);
+
+  --color-gym-orange: #FF6A00;
+  --color-gym-red: #FF2D2D;
+  --color-gym-gold: #F5B942;
+  --color-gym-cyan: #00D6FF;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #050505;
+  --foreground: rgba(255,255,255,0.92);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Utilities for gradients and glows */
+@utility text-gradient {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, var(--color-gym-text-primary), var(--color-gym-text-muted));
+}
+
+@utility text-gradient-orange {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right, var(--color-gym-orange), var(--color-gym-red));
+}
+
+@utility bg-gradient-brand {
+  background-image: linear-gradient(to right, var(--color-gym-orange), var(--color-gym-red));
+}
+
+@utility glow-brand {
+  box-shadow: 0 0 40px -10px var(--color-gym-orange);
+}
+
+@utility glass-panel {
+  background: var(--color-gym-panel);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-gym-border);
+}
+
+/* Force hide Next.js 15 dev indicators */
+nextjs-portal {
+  display: none !important;
 }
