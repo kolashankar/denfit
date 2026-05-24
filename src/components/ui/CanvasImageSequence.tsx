@@ -10,6 +10,7 @@ interface CanvasImageSequenceProps {
   className?: string;
   padLength?: number; // e.g. 3 for "001"
   objectFit?: "cover" | "contain" | "responsive" | "responsive-reverse";
+  objectPosition?: "center" | "responsive-right";
 }
 
 export default function CanvasImageSequence({
@@ -20,6 +21,7 @@ export default function CanvasImageSequence({
   className = "",
   padLength = 3,
   objectFit = "responsive",
+  objectPosition = "center",
 }: CanvasImageSequenceProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [images, setImages] = useState<HTMLImageElement[]>([]);
@@ -74,6 +76,29 @@ export default function CanvasImageSequence({
       currentObjectFit = isMobile ? "contain" : "cover";
     } else if (objectFit === "responsive-reverse") {
       currentObjectFit = isMobile ? "cover" : "contain";
+    }
+
+    if (objectPosition === "responsive-right" && isMobile) {
+      // Crop to just the right 50% of the source image
+      const sourceX = img.width / 2;
+      const sourceY = 0;
+      const sourceW = img.width / 2;
+      const sourceH = img.height;
+
+      // Recalculate scale based on the cropped half
+      let halfScale;
+      if (currentObjectFit === "contain") {
+        halfScale = Math.min(canvas.width / sourceW, canvas.height / sourceH);
+      } else {
+        halfScale = Math.max(canvas.width / sourceW, canvas.height / sourceH);
+      }
+
+      const drawX = (canvas.width / 2) - (sourceW / 2) * halfScale;
+      const drawY = (canvas.height / 2) - (sourceH / 2) * halfScale;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, sourceX, sourceY, sourceW, sourceH, drawX, drawY, sourceW * halfScale, sourceH * halfScale);
+      return;
     }
 
     if (currentObjectFit === "contain") {
