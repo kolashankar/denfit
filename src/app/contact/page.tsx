@@ -80,18 +80,24 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Google Map Embed Placeholder */}
-            <div className="w-full h-[400px] rounded-2xl overflow-hidden glass-panel p-1">
+            {/* Google Map Embed */}
+            <Link href="https://maps.app.goo.gl/FZT2opCWF7mSVSss5" target="_blank" className="relative w-full h-[400px] rounded-2xl overflow-hidden glass-panel p-1 group block cursor-pointer">
+              {/* Overlay to intercept clicks and route to Google Maps */}
+              <div className="absolute inset-0 z-10 bg-black/10 group-hover:bg-transparent transition-colors flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 backdrop-blur-[2px]">
+                <div className="bg-[#FF6A00] text-white px-6 py-3 rounded-full font-bold shadow-xl translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                  Open in Google Maps
+                </div>
+              </div>
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15224.237302484714!2d78.3533!3d17.4526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDI3JzA5LjQiTiA3OMKwMjEnMTEuOSJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin" 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.8271035048454!2d78.36195207604313!3d17.442996683526017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93551dbb16b9%3A0xa1946c1e345cc640!2sFRIEND&#39;Z%20DEN%20Fitness%20Center!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0, borderRadius: '1rem' }} 
-                allowFullScreen={true} 
+                allowFullScreen={false} 
                 loading="lazy" 
-                className="grayscale contrast-125 opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                className="grayscale contrast-125 opacity-80 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
               />
-            </div>
+            </Link>
           </div>
 
           {/* Contact Form */}

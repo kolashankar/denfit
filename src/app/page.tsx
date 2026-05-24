@@ -139,8 +139,8 @@ export default function Home() {
       {/* 4. DUMBBELL SHOWCASE (Scrollytelling) */}
       <div ref={dumbbellRef} className="relative h-[150vh] bg-[#050505]">
         <div className="sticky top-0 h-screen w-full flex flex-col lg:flex-row overflow-hidden">
-          {/* Top/Left Canvas */}
-          <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative flex-shrink-0">
+          {/* Background Canvas (Full screen on mobile to center the dumbbell) */}
+          <div className="absolute inset-0 lg:relative w-full lg:w-1/2 h-full flex-shrink-0">
             <CanvasImageSequence
               imagePath="/assets/dumbel/ezgif-frame-"
               frameCount={30}
@@ -148,11 +148,11 @@ export default function Home() {
               className="lg:scale-125 origin-center"
               objectFit="contain"
             />
-            <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-transparent via-transparent to-[#050505]" />
+            <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-black/90 via-transparent to-[#050505]" />
           </div>
           
-          {/* Bottom/Right Content */}
-          <div className="w-full lg:w-1/2 h-1/2 lg:h-full flex flex-col justify-center px-6 lg:pr-24 lg:pl-12 relative pb-20 lg:pb-0 overflow-y-auto">
+          {/* Content overlay on mobile */}
+          <div className="w-full lg:w-1/2 h-full flex flex-col justify-end lg:justify-center px-6 lg:pr-24 lg:pl-12 relative z-10 pb-24 pt-20 overflow-y-auto">
             <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-6">
               Equipment That<br /><span className="text-gradient">Pushes Progress</span>
             </h2>
